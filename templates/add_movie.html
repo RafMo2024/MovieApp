@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Movie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Add a Movie for User {{ user_id }}</h1>
+    <p>Enter the movie title, and we will fetch the details automatically!</p>
+    
+    <form action="/users/{{ user_id }}/add_movie" method="post">
+        <input type="text" name="movie_name" required placeholder="e.g. The Matrix">
+        <input type="submit" value="Search & Add Movie">
+    </form>
+    
+    <a href="/users/{{ user_id }}" class="back-link">Back to User's Movies</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Favorite Movies of User {{ user_id }}</h1>
+    
+    <a href="/users/{{ user_id }}/add_movie" class="btn">+ Add Movie</a>
+    <a href="/users" class="btn" style="background: #6c757d;">Back to Users</a>
+
+    <div class="movie-grid">
+        {% for movie in movies %}
+            <div class="movie-card">
+                <img src="{{ movie.poster }}" class="movie-poster" alt="{{ movie.name }}">
+                <h3>{{ movie.name }}</h3>
+                <p>{{ movie.year }} | ⭐ {{ movie.rating }}</p>
+                <a href="/users/{{ user_id }}/update_movie/{{ movie.id }}" style="color: #ffc107; text-decoration: none; font-weight: bold; margin-right: 10px;">Edit</a>
+                <a href="/users/{{ user_id }}/delete_movie/{{ movie.id }}" class="delete-btn" style="display:inline;">Delete</a>
+            </div>
+        {% else %}
+            <p>No movies yet. Add some!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

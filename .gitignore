@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Database (should not be uploaded, users start with empty DB)
+*.db
+moviwebapp.db
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# OS metadata (Mac/Windows)
+.DS_Store
+Thumbs.db
