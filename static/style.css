@@ -1,208 +1,194 @@
 /* static/style.css */
 
-/* --- BASIC SETTINGS --- */
+:root {
+    --primary-color: #e50914;
+    --dark-bg: #141414;
+    --glass-bg: rgba(20, 20, 20, 0.85);
+    --text-color: #ffffff;
+}
+
 body {
-    background-color: #141414;
-    color: #e5e5e5;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
-    padding: 20px;
-    line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-h1, h2, h3 {
-    color: #fff;
-    text-align: center;
-    margin-bottom: 30px;
+/* --- NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-a {
-    color: #007bff;
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
     text-decoration: none;
+    color: white;
+    font-weight: 300;
     transition: color 0.3s;
 }
 
-a:hover {
-    color: #0056b3;
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    text-align: center;
+    padding: 100px 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 40px;
 }
 
 /* --- BUTTONS --- */
 .btn {
-    display: inline-block;
-    background-color: #e50914;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 12px 30px;
+    border-radius: 50px;
     text-decoration: none;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    font-weight: 600;
+    transition: transform 0.2s, background 0.3s;
+    display: inline-block;
+    margin: 10px;
 }
 
-.btn:hover {
-    background-color: #b20710;
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #ff0f1f;
     transform: scale(1.05);
+}
+
+.btn-outline {
+    border: 2px solid white;
     color: white;
 }
 
-.btn-secondary {
-    background-color: #555;
+.btn-outline:hover {
+    background-color: white;
+    color: black;
 }
 
-.btn-secondary:hover {
-    background-color: #333;
-}
-
-/* --- FORMS --- */
-form {
-    max-width: 500px;
+/* --- CARDS & LISTS --- */
+.container {
+    max-width: 1200px;
     margin: 0 auto;
-    background-color: #333;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    padding: 20px;
+    flex: 1;
 }
 
-input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 20px 0;
-    box-sizing: border-box;
-    background-color: #444;
-    border: 1px solid #555;
+/* Glassmorphism Card Style */
+.user-list li, .movie-card, form {
+    background: rgba(40, 40, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
     color: white;
-    border-radius: 4px;
 }
 
-input[type="submit"] {
-    width: 100%;
-    background-color: #e50914;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-input[type="submit"]:hover {
-    background-color: #b20710;
-}
-
-/* --- LISTS (USER LIST) --- */
-ul.user-list {
-    list-style-type: none;
+.user-list {
+    list-style: none;
     padding: 0;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
-ul.user-list li {
-    background-color: #333;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 5px;
-    border-left: 5px solid #e50914;
+.user-list li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
 }
 
-ul.user-list a {
-    color: rgb(255, 255, 255);
-    font-size: 1.2em;
+.user-list li:hover {
+    transform: translateX(10px);
+    border-left: 5px solid var(--primary-color);
 }
 
-/* --- MOVIE GRID (TILES) --- */
 .movie-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
-    margin-top: 40px;
 }
 
 .movie-card {
-    background-color: #2f2f2f;
-    width: 220px;
-    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    padding: 0;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
-    display: flex;
-    flex-direction: column;
-}
-
-.movie-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
 }
 
 .movie-poster {
     width: 100%;
-    height: 330px;
+    height: 300px;
     object-fit: cover;
 }
 
 .movie-info {
     padding: 15px;
+}
+
+/* --- FOOTER --- */
+footer {
     text-align: center;
-    flex-grow: 1; /* Ensures buttons align at the bottom */
+    padding: 20px;
+    background: rgba(0,0,0,0.9);
+    color: #777;
+    font-size: 0.9rem;
 }
 
-.movie-title {
-    font-size: 1.1em;
-    margin: 0 0 10px 0;
-    font-weight: bold;
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- INPUT FIELDS --- */
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.1);
     color: white;
-}
-
-.movie-meta {
-    color: #aaa;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-}
-
-.actions {
-    padding: 15px;
-    background-color: #222;
-    display: flex;
-    justify-content: space-between;
-}
-
-.action-btn {
-    font-size: 0.8em;
-    color: #bbb;
-}
-
-.action-btn:hover {
-    color: white;
-}
-
-.delete-btn {
-    color: #ff4d4d;
-}
-
-.delete-btn:hover {
-    color: #ff0000;
-}
-
-/* --- 404 ERROR PAGE --- */
-.error-container {
-    text-align: center;
-    margin-top: 100px;
-}
-
-.error-code {
-    font-size: 6em;
-    color: #e50914; /* Netflix Rot */
-    margin: 0;
-    font-weight: bold;
-}
-
-.error-message {
-    font-size: 1.5em;
-    margin-bottom: 30px;
-    color: #bbb;
 }

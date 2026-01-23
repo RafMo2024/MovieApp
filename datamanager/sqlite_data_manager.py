@@ -102,3 +102,9 @@ class SQLiteDataManager(DataManagerInterface):
     def get_movie(self, movie_id):
         # Helper method to get a single movie object (e.g., for the update from)
         return Movie.query.get(movie_id)
+    
+    def get_user(self, user_id):
+        """
+        Fetches the name of a specific user by their ID.
+        """
+        return User.query.get(user_id)

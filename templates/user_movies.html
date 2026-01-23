@@ -1,27 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Movies</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Favorite Movies of User {{ user_id }}</h1>
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 style="text-align: center;">Favorite Movies of {{ user.name }}</h1>
     
-    <a href="/users/{{ user_id }}/add_movie" class="btn">+ Add Movie</a>
-    <a href="/users" class="btn" style="background: #6c757d;">Back to Users</a>
+    <div style="text-align: center; margin-bottom: 30px;">
+        <a href="/users/{{ user.id }}/add_movie" class="btn btn-primary">+ Add Movie</a>
+        <a href="/users" class="btn btn-outline">Back to Users</a>
+    </div>
 
     <div class="movie-grid">
         {% for movie in movies %}
             <div class="movie-card">
                 <img src="{{ movie.poster }}" class="movie-poster" alt="{{ movie.name }}">
-                <h3>{{ movie.name }}</h3>
-                <p>{{ movie.year }} | ⭐ {{ movie.rating }}</p>
-                <a href="/users/{{ user_id }}/update_movie/{{ movie.id }}" style="color: #ffc107; text-decoration: none; font-weight: bold; margin-right: 10px;">Edit</a>
-                <a href="/users/{{ user_id }}/delete_movie/{{ movie.id }}" class="delete-btn" style="display:inline;">Delete</a>
+                <div class="movie-info">
+                    <div class="movie-title">{{ movie.name }}</div>
+                    <div class="movie-meta">{{ movie.year }} | ⭐ {{ movie.rating }}</div>
+                </div>
+                <div class="actions" style="padding: 15px; background: rgba(0,0,0,0.3); display: flex; justify-content: space-between;">
+                    <a href="/users/{{ user.id }}/update_movie/{{ movie.id }}" style="color: #ffc107; font-size: 0.9rem;">Edit</a>
+                    <a href="/users/{{ user.id }}/delete_movie/{{ movie.id }}" style="color: #ff4d4d; font-size: 0.9rem;">Delete</a>
+                </div>
             </div>
         {% else %}
-            <p>No movies yet. Add some!</p>
+            <p style="text-align: center; width: 100%; font-size: 1.2rem; margin-top: 50px;">
+                No movies yet. Click "Add Movie" to start your collection!
+            </p>
         {% endfor %}
     </div>
-</body>
-</html>
+{% endblock %}

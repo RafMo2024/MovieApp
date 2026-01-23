@@ -20,7 +20,7 @@ def home():
     Returns:
         Rendered HTML template 'users.html'.
     """
-    return render_template('users.html', users=data_manager.get_all_users())
+    return render_template('index.html')
 
 @app.route('/users')
 def list_users():
@@ -69,9 +69,12 @@ def user_movies(user_id):
     """
     # 1. Fetch movies for this user
     movies = data_manager.get_user_movies(user_id)
+
+    # 2. Fetch the user's name (NEW STEP)
+    user = data_manager.get_user(user_id)
     
-    # 2. Display template
-    return render_template('user_movies.html', movies=movies, user_id=user_id)
+    # 3. Display template
+    return render_template('user_movies.html', movies=movies, user=user)
 
 @app.route('/users/<int:user_id>/add_movie', methods=['GET', 'POST'])
 def add_movie_to_user(user_id):
@@ -100,7 +103,8 @@ def add_movie_to_user(user_id):
             # API returned nothing or failed
             return f"<h1>Movie '{movie_name}' not found!</h1><p><a href='/users/{user_id}/add_movie'>Try again</a></p>"
 
-    return render_template('add_movie.html', user_id=user_id)
+    user = data_manager.get_user(user_id)
+    return render_template('add_movie.html', user=user)
 
 @app.route('/users/<int:user_id>/delete_movie/<int:movie_id>')
 def delete_movie(user_id, movie_id):

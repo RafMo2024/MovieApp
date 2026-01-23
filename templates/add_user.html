@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add User</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Add a New User</h1>
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 style="text-align: center;">Add a New User</h1>
     
     <form action="/add_user" method="post">
-        <label for="name">Name:</label><br><br>
-        <input type="text" id="name" name="name" required placeholder="Enter name here">
-        <input type="submit" value="Add User">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required placeholder="Enter name here...">
+        <input type="submit" value="Create User">
     </form>
     
-    <br>
-    <a href="/users">Back to User List</a>
-</body>
-</html>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/users" style="color: #bbb;">Cancel and go back</a>
+    </div>
+{% endblock %}

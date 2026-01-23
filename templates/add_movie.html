@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Add Movie</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Add a Movie for User {{ user_id }}</h1>
-    <p>Enter the movie title, and we will fetch the details automatically!</p>
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 style="text-align: center;">Add Movie for {{ user.name }}</h1>
     
-    <form action="/users/{{ user_id }}/add_movie" method="post">
-        <input type="text" name="movie_name" required placeholder="e.g. The Matrix">
-        <input type="submit" value="Search & Add Movie">
-    </form>
+    <form action="/users/{{ user.id }}/add_movie" method="post">
+        </form>
     
-    <a href="/users/{{ user_id }}" class="back-link">Back to User's Movies</a>
-</body>
-</html>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/users/{{ user.id }}" style="color: #bbb;">Back to Collection</a>
+    </div>
+{% endblock %}

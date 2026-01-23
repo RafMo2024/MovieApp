@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Not Found</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="error-container">
-        <h1 class="error-code">404</h1>
-        <p class="error-message">Oops! We couldn't find that movie (or page).</p>
+{% extends "layout.html" %}
+
+{% block content %}
+    <div style="text-align: center; margin-top: 50px;">
+        <h1 style="font-size: 6rem; color: #e50914; margin: 0;">404</h1>
+        <p style="font-size: 1.5rem; margin-bottom: 30px;">Oops! We couldn't find that page.</p>
         
-        <img src="https://media.giphy.com/media/26hkhKd2Cp5WMWU1O/giphy.gif" alt="Confused Travolta" style="max-width: 300px; border-radius: 10px; margin-bottom: 30px;">
+        <img src="https://media.giphy.com/media/26hkhKd2Cp5WMWU1O/giphy.gif" alt="Confused Travolta" style="max-width: 300px; border-radius: 10px; margin-bottom: 30px; opacity: 0.8;">
+        
         <br>
-        
-        <a href="/" class="btn">Go Home</a>
+        <a href="/" class="btn btn-primary">Go Home</a>
     </div>
-</body>
-</html>
+{% endblock %}

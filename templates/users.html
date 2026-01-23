@@ -1,23 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>All Users</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>MoviWeb Users</h1>
-    
-    <a href="/add_user" class="btn">+ Add New User</a>
+{% extends "layout.html" %}
 
-    <ul>
+{% block content %}
+    <h1 style="text-align: center;">Community Members</h1>
+    
+    <ul class="user-list">
         {% for user in users %}
             <li>
-                <a href="/users/{{ user.id }}">{{ user.name }}</a> 
-                (ID: {{ user.id }})
+                <a href="/users/{{ user.id }}" style="color: white; text-decoration: none; font-size: 1.2rem;">
+                    👤 {{ user.name }}
+                </a>
+                <span style="color: #777; font-size: 0.9rem;">ID: {{ user.id }}</span>
             </li>
         {% else %}
-            <li>No users found. Please add one!</li>
+            <li>No users found.</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+    
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="/add_user" class="btn btn-primary">+ Add New User</a>
+    </div>
+{% endblock %}

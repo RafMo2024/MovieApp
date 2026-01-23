@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Update Movie</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Update Movie Details</h1>
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 style="text-align: center;">Edit Movie Details</h1>
     
     <form action="/users/{{ user_id }}/update_movie/{{ movie.id }}" method="post">
         
@@ -21,9 +17,10 @@
         <label>Rating (0-10):</label>
         <input type="number" name="rating" step="0.1" value="{{ movie.rating }}">
         
-        <input type="submit" value="Update Movie">
+        <input type="submit" value="Save Changes">
     </form>
     
-    <a href="/users/{{ user_id }}" class="back-link">Cancel and go back</a>
-</body>
-</html>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/users/{{ user_id }}" style="color: #bbb;">Cancel</a>
+    </div>
+{% endblock %}
