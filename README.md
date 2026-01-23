@@ -14,4 +14,4 @@ Users can add movies to their list, fetching details (Poster, Rating, Year) auto
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/moviweb-app.git](https://github.com/YOUR_USERNAME/moviweb-app.git)
+   git clone [https://github.com/RafMo2024/moviweb-app.git](https://github.com/RafMo2024/moviweb-app.git)

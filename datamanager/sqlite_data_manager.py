@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Float, ForeignKey
+from sqlalchemy.exc import SQLAlchemyError
 from datamanager.data_manager_interface import DataManagerInterface
 
 # 1. Database Setup (SQLAlchemy Boilerplate)
@@ -51,7 +52,10 @@ class SQLiteDataManager(DataManagerInterface):
         self.db.session.commit()
 
     def add_movie(self, user_id, movie_data):
-        # create a new Movie object from the dictionary provided
+        """
+        Adds a new movie to the database for a specific user.
+        Includes error handling for database transactions.
+        """
         new_movie = Movie(
             name=movie_data['name'],
             director=movie_data.get('director', 'Unknown'),
@@ -60,8 +64,14 @@ class SQLiteDataManager(DataManagerInterface):
             poster=movie_data.get('poster'),
             user_id=user_id
         )
-        self.db.session.add(new_movie)
-        self.db.session.commit()
+        try:
+            self.db.session.add(new_movie)
+            self.db.session.commit()
+            return True
+        except SQLAlchemyError as e:
+            self.db.session.rollback() # Undo changes on error
+            print(f"Database Error: {e}")
+            return False
 
     def update_movie(self, movie_id, movie_data):
         # Find the movie by ID and update its fields
@@ -74,10 +84,20 @@ class SQLiteDataManager(DataManagerInterface):
             self.db.session.commit()
 
     def delete_movie(self, movie_id):
-        movie = Movie.query.get(movie_id)
-        if movie:
-            self.db.session.delete(movie)
-            self.db.session.commit()
+        """
+        Deletes a movie by ID with error handling.
+        """
+        try:
+            movie = Movie.query.get(movie_id)
+            if movie:
+                self.db.session.delete(movie)
+                self.db.session.commit()
+                return True
+            return False
+        except SQLAlchemyError as e:
+            self.db.session.rollback()
+            print(f"Error deleting movie: {e}")
+            return False
 
     def get_movie(self, movie_id):
         # Helper method to get a single movie object (e.g., for the update from)
