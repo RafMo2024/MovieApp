@@ -5,11 +5,11 @@
     
     <ul class="user-list">
         {% for user in users %}
-            <li>
-                <a href="/users/{{ user.id }}" style="color: white; text-decoration: none; font-size: 1.2rem;">
-                    👤 {{ user.name }}
+            <li class="user-item">
+                <a href="/users/{{ user.id }}" class="user-link">
+                    <span class="user-name">👤 {{ user.name }}</span>
+                    <span class="user-id">ID: {{ user.id }}</span>
                 </a>
-                <span style="color: #777; font-size: 0.9rem;">ID: {{ user.id }}</span>
             </li>
         {% else %}
             <li>No users found.</li>

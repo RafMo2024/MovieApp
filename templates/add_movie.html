@@ -4,7 +4,11 @@
     <h1 style="text-align: center;">Add Movie for {{ user.name }}</h1>
     
     <form action="/users/{{ user.id }}/add_movie" method="post">
-        </form>
+        <label>Movie Title:</label>
+        <input type="text" name="movie_name" required placeholder="e.g. Inception">
+        
+        <input type="submit" value="Search & Add Movie">
+    </form>
     
     <div style="text-align: center; margin-top: 20px;">
         <a href="/users/{{ user.id }}" style="color: #bbb;">Back to Collection</a>

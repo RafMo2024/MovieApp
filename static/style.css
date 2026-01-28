@@ -1,7 +1,7 @@
 /* static/style.css */
 
 :root {
-    --primary-color: #e50914;
+    --primary-color: #e50914; /* Netflix Red */
     --dark-bg: #141414;
     --glass-bg: rgba(20, 20, 20, 0.85);
     --text-color: #ffffff;
@@ -12,6 +12,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--dark-bg);
     color: var(--text-color);
+    /* Hintergrundbild direkt von Unsplash */
     background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
     background-size: cover;
     background-attachment: fixed;
@@ -85,6 +86,8 @@ body {
     transition: transform 0.2s, background 0.3s;
     display: inline-block;
     margin: 10px;
+    border: none;
+    cursor: pointer;
 }
 
 .btn-primary {
@@ -100,6 +103,7 @@ body {
 .btn-outline {
     border: 2px solid white;
     color: white;
+    background: transparent;
 }
 
 .btn-outline:hover {
@@ -107,7 +111,7 @@ body {
     color: black;
 }
 
-/* --- CARDS & LISTS --- */
+/* --- CARDS & LISTS (Glassmorphism) --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -115,27 +119,21 @@ body {
     flex: 1;
 }
 
-/* Glassmorphism Card Style */
+/* Shared styles for cards */
 .user-list li, .movie-card, form {
     background: rgba(40, 40, 40, 0.6);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    padding: 20px;
     margin-bottom: 20px;
     color: white;
 }
 
-.user-list {
-    list-style: none;
-    padding: 0;
-}
-
+/* Spezifische Styles für User List Items */
 .user-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.2s;
+    padding: 0;
+    transition: transform 0.2s, border-left 0.2s;
+    overflow: hidden;
 }
 
 .user-list li:hover {
@@ -143,18 +141,50 @@ body {
     border-left: 5px solid var(--primary-color);
 }
 
+/* Styles für den anklickbaren Link im User Item */
+.user-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.user-link:hover {
+    color: white;
+}
+
+.user-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.user-id {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.user-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Movie Card Specifics */
+.movie-card {
+    padding: 0;
+    width: 200px;
+    text-align: center;
+    overflow: hidden;
+}
+
 .movie-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
-}
-
-.movie-card {
-    width: 200px;
-    text-align: center;
-    padding: 0;
-    overflow: hidden;
 }
 
 .movie-poster {
@@ -165,6 +195,23 @@ body {
 
 .movie-info {
     padding: 15px;
+}
+
+.movie-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.movie-meta {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+/* Forms */
+form {
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 /* --- FOOTER --- */
@@ -186,9 +233,40 @@ footer {
 input[type="text"], input[type="number"] {
     width: 100%;
     padding: 12px;
-    margin: 10px 0;
+    margin: 10px 0 20px 0;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #555;
     background: rgba(255,255,255,0.1);
     color: white;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #b20710;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* 404 Error Styles */
+.error-container {
+    text-align: center;
+    margin-top: 50px;
 }

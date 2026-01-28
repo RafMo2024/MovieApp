@@ -140,11 +140,19 @@ def update_movie(user_id, movie_id):
     """
     # 1. POST: Save updated data
     if request.method == 'POST':
+        try:
+            # Versuche, die Zahlen umzuwandeln
+            year = int(request.form['year'])
+            rating = float(request.form['rating'])
+        except ValueError:
+            # Falls der User Text statt Zahlen eingegeben hat
+            return "<h1>Error: Year must be an integer and Rating a number.</h1><a href='javascript:history.back()'>Go Back</a>", 400
+
         updated_data = {
             'name': request.form['name'],
             'director': request.form['director'],
-            'year': int(request.form['year']),
-            'rating': float(request.form['rating'])
+            'year': year,
+            'rating': rating
         }
         data_manager.update_movie(movie_id, updated_data)
         return redirect(url_for('user_movies', user_id=user_id))
@@ -167,4 +175,4 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
